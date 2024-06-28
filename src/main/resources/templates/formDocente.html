@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+<div data-th-replace="~{fragments/fragmentos :: navbar}"></div>
+<form data-th-object="${d}" data-th-action="${band}?@{/modificarDocente}:@{/guardarDocente}" method="post" enctype="multipart/form-data">
+		<div class="row g-3">
+		
+			<!-- <input type="hidden" class="form-control" th:if="${band}" th:field="*{id_Docente}">
+			 -->
+				<div class="col-md-6">
+				    <label for="nombreID" class="form-label">Nombre</label>
+				    <input type="text" class="form-control" id="nombreID" title="Ingresa un nombre valido, sin números o caracteres especiales." pattern="[A-Za-z\s]+" data-th-field="*{nombre}" required>
+				</div>
+				<div class="col-md-6">
+				    <label for="apellidoID" class="form-label">Apellido</label>
+				    <input type="text" class="form-control" id="apellidoID" data-th-field="*{apellido}" pattern="[A-Za-z\s]+" title="Ingresa un apellido valido, sin números o caracteres especiales." required>
+				</div>
+				<div class="col-md-12">
+				    <label for="legajo" class="form-label">Contraseña</label>
+				    <input type="text" class="form-control" id="legajo" data-th-field="*{legajo}" title="Ingresa un legajo." required>
+				</div>				
+				<div class="col-md-6">
+				    <label for="telID" class="form-label">Número de Télefono</label>
+				    <input type="tel" class="form-control" id="telID" data-th-field="*{telefono}" pattern="\d{10}" title="Ingresa un número de 10 dígitos." required>		    
+				</div>
+				<div class="col-md-6">
+				    <label for="correoID" class="form-label">Correo</label>
+				    <input type="email" class="form-control" id="correoID" title="Ingresa un correo valido." data-th-field="*{email}">
+				</div>
+				
+				<div class="mb-e">
+	            <label class="form-label">Materia</label>
+	            <select data-th-field="*{materia}" class="form-control" required><br>
+	                <option value="">Seleccionar materia...</option>
+	                <option data-th-each="mat : ${mats}" data-th-value="${mat.codigo}" data-th-text="${mat.nombre + ' ' + mat.anio}"></option>
+	            </select>
+	        </div>
+						
+			</div>
+			<button class="btn btn-success rounded-pill" type="submit">Registrar</button>
+		</form>
+			<div data-th-replace="~{fragments/fragmentos :: footer}"></div>
+	</div>
+
+	<script
+		data-th-src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<title>CARRERA</title>
+</head>
+<body>
+<div class="container">
+<div data-th-replace="~{fragments/fragmentos :: navbar}"></div>
+<form data-th-object="${c}" data-th-action="${band}?@{/modificarCarrera}:@{/guardarCarrera}" method="post" enctype="multipart/form-data">
+		<div class="row g-3">
+		
+			<!-- <input type="hidden" class="form-control" th:if="${band}" th:field="*{id_Docente}">
+			 -->
+				<div class="col-md-6">
+				    <label for="nombreID" class="form-label">Nombre</label>
+				    <input type="text" class="form-control" id="nombreID" title="Ingresa un nombre valido, sin números o caracteres especiales." pattern="[A-Za-z\s]+" data-th-field="*{nombre}" required>
+				</div>
+				<div class="col-md-6">
+				    <label for="codigo" class="form-label">Codigo</label>
+				    <input type="text" class="form-control" id="codigo" data-th-field="*{codigoCar}" title="Ingresa un apellido valido, sin números o caracteres especiales." required>
+				</div>
+				<div class="col-md-12">
+				    <label for="duracion" class="form-label">Duracion</label>
+				    <input type="number" class="form-control" id="duracion" data-th-field="*{duracion}" title="Ingresa un legajo." required>
+				</div>				
+				
+				<div class="mb-e">
+	            <label class="form-label">Materias</label>
+	            <select data-th-field="*{materias}" class="form-control" required multiple><br>
+	                <option value="">Seleccionar materia...</option>
+	                <option data-th-each="mat : ${mats}" data-th-value="${mat.codigoMat}" data-th-text="${mat.nombre + ' ' + mat.anio}"></option>
+	            </select>
+	        </div>
+						
+			</div>
+			<button class="btn btn-success rounded-pill" type="submit">Registrar</button>
+		</form>
+			<div data-th-replace="~{fragments/fragmentos :: footer}"></div>
+	</div>
+
+	<script
+		data-th-src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

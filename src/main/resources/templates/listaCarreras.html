@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<p>Lista Carreras</p>
+<table class="table table-striped-columns table-primary">
+			<tr>
+				<th>Código Car</th>
+				<th>Nombre</th>
+				<th>Duracion</th>
+				<th>Materias</th>
+				
+			</tr>
+			<tr data-th-each="c : ${listadoCarreras}">
+				<td data-th-text="${c.codigoCar}"></td>
+				<td data-th-text="${c.nombre}"></td>
+				<td data-th-text="${c.duracion}"></td>
+				<td data-th-text="${c.materias.size()}"></td>
+				
+			</tr>
+		</table>
+</body>
+</html>

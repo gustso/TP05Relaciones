@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	data-th-href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container-fluid">
+		<table class="table table-striped-columns table-primary">
+			<tr>
+				<th>Código</th>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Email</th>
+				<th>Télefono</th>
+				<th>Materia</th>
+				<th>Edición</th>
+			</tr>
+			<tr data-th-each="docente : ${listadoDocentes}">
+				<td data-th-text="${docente.legajo}"></td>
+				<td data-th-text="${docente.nombre}"></td>
+				<td data-th-text="${docente.apellido}"></td>
+				<td data-th-text="${docente.email}"></td>
+				<td data-th-text="${docente.telefono}"></td>
+				<td data-th-text="${docente.materia}"></td>
+				<td><a data-th-href="@{|/eliminarDocente/${docente.legajo}|}"
+					class="btn btn-danger">Borrar</a> <a
+					data-th-href="@{'/modificarDocente/'+${docente.legajo}}"
+					class="btn btn-success">Editar</a></td>
+			</tr>
+		</table>
+		<div class="alert alert-danger" role="alert" data-th-if="${errors}" >
+		<p data-th-text="${cargaDocenteErrorMessage}"></p>
+		</div>
+	</div>
+	<script
+		data-th-src="@{/webjars/bootstrap/5.3.3/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
